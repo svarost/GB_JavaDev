@@ -10,7 +10,7 @@ public class HomeTask3 {
     public static void main(String[] args) {
         ArrayList<Integer> smplNums = new ArrayList<>();
 
-        for (int i = 2; i <= 300; i++) {
+        for (int i = 2; i <= 100; i++) {
             int k = 0;
             for (int j = 1; j <= i; j++) {
                 if (i % j == 0) k++;
