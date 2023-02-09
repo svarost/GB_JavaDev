@@ -1,9 +1,6 @@
 package lesson6;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Homework {
 // 1) Подумать над структурой класса Ноутбук для магазина техники - выделить поля и методы. Реализовать в java.
@@ -14,11 +11,13 @@ public class Homework {
 // 4) Отфильтровать ноутбуки их первоначального множества и вывести проходящие по условиям.
 
     public static void main(String[] args) {
-        initFilters();
-        initListNotebooks();
+        Map<String, String> filters = initFilters();
+        List<Notebook> notebooks = initListNotebooks();
+        System.out.println(notebooks);
+        System.out.println(filter(filters, notebooks));
     }
 
-    private static Map<String, String > initFilters() {
+    private static Map<String, String> initFilters() {
         Map<String, String> filters = new HashMap<>();
         filters.put("brand", "Lenovo");
         filters.put("memoryRAM", "8 GB");
@@ -41,10 +40,13 @@ public class Homework {
         return notebooks;
     }
 
-    public List<Notebook> filter(Map<String, String> params, List<Notebook> notebooks) {
-
-
-
-        return null;
+    public static List<Notebook> filter(Map<String, String> params, List<Notebook> notebooks) {
+        List<Notebook> rezult = new ArrayList<>();
+        for (Notebook nb : notebooks) {
+            if (nb.isRespond(params)) {
+                rezult.add(nb);
+            }
+        }
+        return rezult;
     }
 }

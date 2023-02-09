@@ -1,16 +1,23 @@
 package lesson6;
 
+import java.util.*;
+
 public class Notebook {
-    String brand;
-    String model;
-    String serialNumber;
-    String processor;
-    String memoryRAM;
-    String memoryROM;
-    String operationSystem;
-    String color;
-    int displaySize;
-    String displayType;
+    private String brand;
+    private String model;
+    private String serialNumber;
+    private String processor;
+    private String memoryRAM;
+    private String memoryROM;
+    private String operationSystem;
+    private String color;
+    private String displaySize;
+    private String displayType;
+
+    private final Map<String, Integer> params =
+            Map.of("brand", 0, "model", 1, "serialNumber", 2, "processor", 3,
+                    "memoryRAM", 4, "memoryROM", 5, "operationSystem", 6);
+
 
     public Notebook() {
     }
@@ -23,6 +30,45 @@ public class Notebook {
         this.memoryRAM = memoryRAM;
         this.memoryROM = memoryROM;
         this.operationSystem = operationSystem;
+    }
+
+    private Integer isParam(String filter) {
+        return params.getOrDefault(filter, null);
+    }
+
+    private boolean isParamEqual(String key, String value) {
+        if (isParam(key) == null) {
+            return false;
+        } else {
+            return switch (isParam(key)) {
+                case 0 -> brand.contains(value);
+                case 1 -> model.contains(value);
+                case 2 -> serialNumber.contains(value);
+                case 3 -> processor.contains(value);
+                case 4 -> memoryRAM.contains(value);
+                case 5 -> memoryROM.contains(value);
+                case 6 -> operationSystem.contains(value);
+                default -> false;
+            };
+        }
+    }
+
+    public boolean isRespond(Map<String, String> filters) {
+        for (String key : filters.keySet()) {
+            if (!isParamEqual(key, filters.get(key))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return brand + model + processor + memoryRAM + memoryROM + operationSystem + "\n";
+    }
+
+    private void initParams() {
+
     }
 
     public String getBrand() {
@@ -57,7 +103,7 @@ public class Notebook {
         return color;
     }
 
-    public int getDisplaySize() {
+    public String getDisplaySize() {
         return displaySize;
     }
 
@@ -97,7 +143,7 @@ public class Notebook {
         this.color = color;
     }
 
-    public void setDisplaySize(int displaySize) {
+    public void setDisplaySize(String displaySize) {
         this.displaySize = displaySize;
     }
 
