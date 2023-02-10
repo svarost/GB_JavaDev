@@ -9,9 +9,9 @@ public class Task2 {
     // Пример 1: Input: s = [["Москва","Самара"], ["Курск","Пенза"],["Самара","Курск"]]  Output: Пенза
     // Пример 2: Input: s = [["Москва","Самара"]]  Output: Самара
     public static void main(String[] args) {
-        Map<String, String> cities = new HashMap<String, String>();
-        cities.put("Moscow","Samara");
-        cities.put("Kursk","Penza");
+        Map<String, String> cities = new HashMap<>();
+        cities.put("Moscow","Самара");
+        cities.put("Kursk","Пенза");
         cities.put("Samara","Kursk");
 
         System.out.println(getFinalCity(cities));
